@@ -1,0 +1,65 @@
+/home/ec2-user/.rbenv/versions/2.6.3/bin/ruby -I/home/ec2-user/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/rspec-support-3.11.0/lib:/home/ec2-user/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/rspec-core-3.11.0/lib /home/ec2-user/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/rspec-core-3.11.0/exe/rspec --pattern spec/rails-sv/\*_spec.rb
+
+Port "80"
+  is expected to be listening
+
+Port "22"
+  is expected to be listening
+
+File "/etc/sysconfig/clock"
+  content
+    is expected to match /ZONE="Asia\/Tokyo"/
+
+Package "nginx"
+  is expected to be installed
+
+Service "nginx"
+  is expected to be enabled
+  is expected to be running
+
+Process "puma"
+  count
+    is expected to eq 1
+
+Command "mysql --version"
+  stdout
+    is expected to match /8\.0\./
+
+File "/var/www/tutorial-04/.ruby-version"
+  content
+    is expected to match /ruby-2\.6\.3/
+
+Command "~/.rbenv/shims/gem list | grep bundler"
+  stdout
+    is expected to match /2\.2\.17/
+
+Command "~/.rbenv/shims/gem list | grep rails"
+  stdout
+    is expected to match /6\.0\.4/
+
+Command "~/.rbenv/shims/gem list"
+  stdout
+    is expected to match /mysql2/
+
+Command "ls /etc/nginx/conf.d/"
+  stdout
+    is expected to match /.*\.conf/
+
+File "/var/www/tutorial-04/config/puma.rb"
+  content
+    is expected to match /bind "unix:.*\/tmp\/sockets\/puma\.sock/
+
+File "/var/www/tutorial-04/config/database.yml"
+  content
+    is expected to match /host:.*Rails\.application\.credentials/
+
+File "/var/www/tutorial-04/config/master.key"
+  is expected to exist
+
+File "/var/www/tutorial-04/config/environments/development.rb"
+  content
+    is expected to match /config\.hosts\.clear/
+
+Finished in 3.14 seconds (files took 0.39896 seconds to load)
+17 examples, 0 failures
+
